@@ -1,0 +1,371 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/sounds/Spaghetti Western.wav" type="AudioStream" id=2]
+[ext_resource path="res://gameState.gd" type="Script" id=3]
+[ext_resource path="res://restart.png" type="Texture" id=4]
+[ext_resource path="res://Assets/dot.png" type="Texture" id=5]
+[ext_resource path="res://scoreBoard.gd" type="Script" id=6]
+[ext_resource path="res://play.png" type="Texture" id=7]
+[ext_resource path="res://Poppins-Bold.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="Theme" id=9]
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+
+"
+
+[sub_resource type="DynamicFont" id=11]
+size = 60
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("ColorRect:anchor_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ColorRect:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "bang"
+
+[sub_resource type="Animation" id=8]
+resource_name = "wipe"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("ColorRect:anchor_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ColorRect:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 0.9 )
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 9 )
+script = ExtResource( 3 )
+players = [ NodePath("Container/Player button 1/CenterContainer/CenterPoint/Character"), NodePath("Container/Player button 2/CenterContainer/CenterPoint/Character") ]
+dots = [ NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("") ]
+
+[node name="scores" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -61.0
+margin_right = 512.0
+
+[node name="scoreBoard" type="HBoxContainer" parent="scores"]
+margin_left = 308.0
+margin_right = 488.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 180, 40 )
+custom_constants/separation = 45
+script = ExtResource( 6 )
+
+[node name="dot" type="Control" parent="scores/scoreBoard"]
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard/dot"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="dot2" type="Control" parent="scores/scoreBoard"]
+margin_left = 45.0
+margin_right = 45.0
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard/dot2"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="dot3" type="Control" parent="scores/scoreBoard"]
+margin_left = 90.0
+margin_right = 90.0
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard/dot3"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="dot4" type="Control" parent="scores/scoreBoard"]
+margin_left = 135.0
+margin_right = 135.0
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard/dot4"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="dot5" type="Control" parent="scores"]
+modulate = Color( 0.839216, 0.839216, 0.839216, 1 )
+margin_left = 487.526
+margin_top = -2.694
+margin_right = 536.475
+margin_bottom = 65.306
+grow_horizontal = 2
+rect_min_size = Vector2( 48.949, 43.176 )
+
+[node name="winningDot" type="Sprite" parent="scores/dot5"]
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="scoreBoard2" type="HBoxContainer" parent="scores"]
+margin_left = 540.0
+margin_right = 713.0
+margin_bottom = 68.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 180, 40 )
+rect_scale = Vector2( -1, 1 )
+rect_pivot_offset = Vector2( 90, 0 )
+custom_constants/separation = 45
+script = ExtResource( 6 )
+
+[node name="dot" type="Control" parent="scores/scoreBoard2"]
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard2/dot"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="dot2" type="Control" parent="scores/scoreBoard2"]
+margin_left = 45.0
+margin_right = 45.0
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard2/dot2"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="dot3" type="Control" parent="scores/scoreBoard2"]
+margin_left = 90.0
+margin_right = 90.0
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard2/dot3"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="dot4" type="Control" parent="scores/scoreBoard2"]
+margin_left = 135.0
+margin_right = 135.0
+margin_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Sprite" type="Sprite" parent="scores/scoreBoard2/dot4"]
+scale = Vector2( 0.067, 0.067 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Player button 1" type="Button" parent="Container"]
+margin_right = 510.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+disabled = true
+action_mode = 0
+flat = true
+script = SubResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Container/Player button 1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="CenterPoint" type="Control" parent="Container/Player button 1/CenterContainer"]
+margin_left = 255.0
+margin_top = 300.0
+margin_right = 255.0
+margin_bottom = 300.0
+mouse_filter = 2
+
+[node name="Character" parent="Container/Player button 1/CenterContainer/CenterPoint" instance=ExtResource( 1 )]
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+scoreBoard = NodePath("../../../../../scores/scoreBoard")
+color = Color( 0.501961, 0.623529, 0.713726, 1 )
+
+[node name="Button Anchor" type="Control" parent="Container/Player button 1"]
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.15
+anchor_bottom = 0.5
+
+[node name="Player button 2" type="Button" parent="Container"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+disabled = true
+action_mode = 0
+flat = true
+script = SubResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Container/Player button 2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="CenterPoint" type="Control" parent="Container/Player button 2/CenterContainer"]
+margin_left = 255.0
+margin_top = 300.0
+margin_right = 255.0
+margin_bottom = 300.0
+mouse_filter = 2
+
+[node name="Character" parent="Container/Player button 2/CenterContainer/CenterPoint" instance=ExtResource( 1 )]
+rotation = -1.5708
+scale = Vector2( 0.4, 0.4 )
+playerNumber = 1
+scoreBoard = NodePath("../../../../../scores/scoreBoard2")
+color = Color( 0.713726, 0.501961, 0.517647, 1 )
+
+[node name="CountDown" type="Label" parent="."]
+visible = false
+modulate = Color( 0.333333, 0.333333, 0.333333, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 11 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Restart" type="Button" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.686275 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 40, 40 )
+mouse_default_cursor_shape = 2
+disabled = true
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+
+[node name="Play" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0.686275 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 40, 40 )
+mouse_default_cursor_shape = 2
+icon = ExtResource( 7 )
+flat = true
+icon_align = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0.670588, 0.670588, 0.670588, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 7 )
+anims/bang = SubResource( 10 )
+anims/wipe = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="Container/Player button 1" to="Container/Player button 1/CenterContainer/CenterPoint/Character" method="button_pressed"]
+[connection signal="pressed" from="Container/Player button 2" to="Container/Player button 2/CenterContainer/CenterPoint/Character" method="button_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_restart_game"]
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]

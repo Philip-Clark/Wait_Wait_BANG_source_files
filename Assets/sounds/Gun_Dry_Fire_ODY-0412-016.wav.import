@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Gun_Dry_Fire_ODY-0412-016.wav-8f9b6f70f1df50ed8ee8a4cf2316040f.sample"
+
+[deps]
+
+source_file="res://Assets/sounds/Gun_Dry_Fire_ODY-0412-016.wav"
+dest_files=[ "res://.import/Gun_Dry_Fire_ODY-0412-016.wav-8f9b6f70f1df50ed8ee8a4cf2316040f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
